@@ -16,3 +16,5 @@ build/externalLibs
 build/package
 build/project
 build/projectRefs
+
+!PokeGOAPI-library-all-0.4.0.jar
