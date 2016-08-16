@@ -1,4 +1,4 @@
-##PokemonManager
+##Pokemon Manager for Pokemon Go
 Help user to manage pokemons without phone, doing batch jobs (transfer, evolve, power up, etc..).
 Support both PTC and Google Auth.
 
