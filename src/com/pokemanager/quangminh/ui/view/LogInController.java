@@ -87,6 +87,7 @@ public class LogInController<T> {
 					mainApp.setUserInfo(go);
 					mainApp.setAuthMethod(authMethod);
 					mainApp.showMainPokemonView();
+
 				} else{
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle(Constant.LOGIN_DIALOG_TITLE);

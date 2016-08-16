@@ -5,6 +5,7 @@ import java.awt.JobAttributes.DialogType;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 import com.pokegoapi.api.PokemonGo;
@@ -16,6 +17,7 @@ import com.pokemanager.quangminh.ui.view.LogInController;
 import com.pokemanager.quangminh.ui.view.MainPokemonViewController;
 import com.pokemanager.quangminh.utilities.Constant;
 
+import POGOProtos.Data.Player.CurrencyOuterClass.Currency;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -38,6 +40,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -53,6 +56,14 @@ public class MainApp extends Application {
 	private Player player;
 
 
+
+	public PokemonGo getGo() {
+		return go;
+	}
+
+	public void setGo(PokemonGo go) {
+		this.go = go;
+	}
 
 	public String getAuthCode() {
 		return authCode;
@@ -76,8 +87,8 @@ public class MainApp extends Application {
 		this.primaryStage.setTitle("Pokemon Manager");
 
 		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-		this.primaryStage.setWidth(primaryScreenBounds.getWidth() / 2);
-		this.primaryStage.setHeight(primaryScreenBounds.getHeight() / 2);
+		this.primaryStage.setWidth(primaryScreenBounds.getWidth());
+		this.primaryStage.setHeight(primaryScreenBounds.getHeight());
 
 		File image = new File("resources/icon.jpg");
 		this.primaryStage.getIcons().add(new Image(image.toURI().toString()));
@@ -142,7 +153,10 @@ public class MainApp extends Application {
 		try {
 			Parent logInView = (Parent) loader.load();
 			rootLayout.setCenter(null);
-			rootLayout.setCenter(logInView);
+			GridPane grid = new GridPane();
+			grid.add(logInView, 0, 0);
+			grid.setAlignment(Pos.CENTER);
+			rootLayout.setCenter(grid);
 			LogInController logInController = loader.getController();
 			logInController.setMainApp(this);
 		} catch (IOException e) {
@@ -152,6 +166,7 @@ public class MainApp extends Application {
 	}
 
 	public void showMainPokemonView(){
+
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(MainApp.class.getResource("view/MainPokemonView.fxml"));
 		try {
@@ -160,7 +175,14 @@ public class MainApp extends Application {
 			rootLayout.setCenter(mainPokemonView);
 			MainPokemonViewController mainPokemonViewController = loader.getController();
 			mainPokemonViewController.setMainApp(this);
+			mainPokemonViewController.constructPlayerInfoPane();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LoginFailedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteServerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -175,6 +197,10 @@ public class MainApp extends Application {
 		} catch (RemoteServerException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
 	public Player getPlayer() {
@@ -270,4 +296,7 @@ public class MainApp extends Application {
 		this.authMethod = authMethod;
 	}
 
+	public void maximizeWindow(){
+		this.primaryStage.setMaximized(true);
+	}
 }

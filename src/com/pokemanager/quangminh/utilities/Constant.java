@@ -1,6 +1,7 @@
 package com.pokemanager.quangminh.utilities;
 
 public class Constant {
+	public static final int MAX_CHAR_NICKNAME = 12;
 	public static final String PTC_AUTH = "PTC";
 	public static final String GOOGLE_AUTH = "Google";
 	public static final String LOGIN_DIALOG_TITLE = "Log in";
@@ -15,4 +16,7 @@ public class Constant {
 	public static final String WAIT_LABEL = "Please wait...";
 	public static final String CREDIT_TITLE = "About";
 	public static final String CREDIT_DETAIL = "Tran Quang Minh\nquangminhtran94@gmail.com";
+	public static final String RENAME_TITLE = "Rename";
+	public static final String RENAME_HEADER = "Please enter new nickname";
+	public static final String RENAME_PROMPT_LABEL = "Name";
 }

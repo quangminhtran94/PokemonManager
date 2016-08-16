@@ -99,6 +99,16 @@ public class PokemonController {
 		});
 	}
 
+	public void rename(List<Pokemon> pokemons, String newName) {
+		pokemons.forEach(pokemon -> {
+			try {
+				pokemon.renamePokemon(newName);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+	}
+
 	public void powerUp(List<Pokemon> pokemons){
 		pokemons.forEach(pokemon -> {
 			try {

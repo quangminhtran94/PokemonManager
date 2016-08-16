@@ -16,5 +16,7 @@ build/externalLibs
 build/package
 build/project
 build/projectRefs
-
+bin/.gitignore
+build/build
+*~*
 !PokeGOAPI-library-all-0.4.0.jar

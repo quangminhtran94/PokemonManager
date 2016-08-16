@@ -15,6 +15,16 @@ public class Player {
 	private static PokemonController pokemonController;
 	private Inventories inventories;
 	private PlayerProfile profile;
+	private double latitude;
+	private double longitude;
+
+
+
+	public Player(Inventories inventories, PlayerProfile profile, double latitude, double longitude) {
+		super();
+		this.inventories = inventories;
+		this.profile = profile;
+	}
 
 	public Player(Inventories inventories, PlayerProfile profile) {
 		super();
@@ -22,6 +32,7 @@ public class Player {
 		this.profile = profile;
 		this.pokemonController = PokemonController.getInstance();
 	}
+
 	public Inventories getInventories() {
 		return inventories;
 	}
